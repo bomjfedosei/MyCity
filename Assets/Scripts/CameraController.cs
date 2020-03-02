@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
     private Camera cam;
-    private Vector2 startPos;
+    private Vector2 startPos, previosPos;
     public int borderXUp, borderXDown, borderYUp, borderYDown;
+    public Text coorsInfo;
 
     private void Start()
     {
@@ -30,5 +32,12 @@ public class CameraController : MonoBehaviour
                 GetComponent<Map>().GenMap(x, y);
             }
         }
+        if (previosPos != (Vector2)transform.position)
+        {
+            string posX = ((int)transform.position.x).ToString();
+            string posY = ((int)transform.position.y).ToString();
+            coorsInfo.text = "X: " + posX + " Y: " + posY;
+        }
+        
     }
 }
