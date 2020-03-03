@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         cam = GetComponent<Camera>();
+        setCoorsText();
     }
 
     private void Update()
@@ -27,17 +28,21 @@ public class CameraController : MonoBehaviour
             int x = (int)transform.position.x;
             int y = (int)transform.position.y;
             if (x < borderXUp || x > borderXDown ||
-                y < borderYUp || y > borderYDown)
+                y < borderYUp || y > borderYDown) 
             {
                 GetComponent<Map>().GenMap(x, y);
             }
         }
         if (previosPos != (Vector2)transform.position)
         {
-            string posX = ((int)transform.position.x).ToString();
-            string posY = ((int)transform.position.y).ToString();
-            coorsInfo.text = "X: " + posX + " Y: " + posY;
+            setCoorsText();
         }
-        
+    }
+
+    private void setCoorsText()
+    {
+        string posX = ((int)transform.position.x).ToString();
+        string posY = ((int)transform.position.y).ToString();
+        coorsInfo.text = "X: " + posX + " Y: " + posY;
     }
 }

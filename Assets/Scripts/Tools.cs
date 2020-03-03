@@ -8,10 +8,12 @@ using Leguar.TotalJSON;
 
 namespace Tools{
     public class Send{
+        public static Dictionary<string, UnityWebRequest> items = new Dictionary<string, UnityWebRequest>();
         private static string rootUrl = "https://bomjfedosei.fvds.ru/async/";
         public static IEnumerator Request(string method, string json, Action<string> CallBack){
             string url = rootUrl + method;
             var uwr = new UnityWebRequest(url, "POST");
+            items.Add(method, uwr);
             byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
             uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
             uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
