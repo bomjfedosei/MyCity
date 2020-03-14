@@ -31,3 +31,4 @@ ExportedObj/
 *.unitypackage
 *.app
 *.exe
+.vscode/

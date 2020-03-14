@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Tools;
@@ -112,6 +111,7 @@ public class Map : MonoBehaviour
                         GetObject(element.GetString("name")),
                         coors, Quaternion.identity);
                     Objects.Add(uuid, createdObject);
+                    createdObject.GetComponent<Element>().setJSON(element);
                 }
                 createdObjectsKeys.Add(uuid);
             }
