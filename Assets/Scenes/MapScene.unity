@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420035}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
@@ -325,6 +326,18 @@ MonoBehaviour:
   Sprite: {fileID: 850979663}
   Wood: {fileID: 21300000, guid: 6e45805459d5ae345aafa819fdc689a7, type: 3}
   Count: {fileID: 1387290472}
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c400e716e02bc48bd872499829d125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &780448453
 GameObject:
   m_ObjectHideFlags: 0
