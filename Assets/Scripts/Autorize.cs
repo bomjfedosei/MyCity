@@ -21,7 +21,7 @@ public class Autorize : MonoBehaviour
 
     void Start(){
         Social.localUser.Authenticate((bool success) => {
-            
+            Debug.Log(success);
         });
     }
 }
