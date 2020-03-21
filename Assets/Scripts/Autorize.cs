@@ -15,8 +15,8 @@ public class Autorize : MonoBehaviour
             if (success){
                 JSON body = new JSON();
                 body.Add("user_id", Social.localUser.id);
-                body.Add("username", Social.localUser.userName);
-                StartCoroutine(Send.Request("register", body.CreateString(), AfterRegister));
+                body.Add("username", Social.localUser.userName); 
+                StartCoroutine(Send.Request("register_user", body.CreateString(), AfterRegister));
             }
         });
     }
