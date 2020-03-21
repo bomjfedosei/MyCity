@@ -12,7 +12,7 @@ public class Autorize : MonoBehaviour
     void Start(){
         PlayGamesPlatform.Activate();
         Social.localUser.Authenticate((bool success) => {
-            StartCoroutine(Send.Request("check_connection?param=" + success.ToString(), new JSON().CreateString(), AfterRegister));
+            StartCoroutine(Send.Request("check_connection?param=" + Social.localUser.userName, new JSON().CreateString(), AfterRegister));
         });
     }
     void AfterRegister(string response){
