@@ -4,6 +4,7 @@ using UnityEngine;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using Tools;
+using Leguar.TotalJSON;
 
 
 public class Autorize : MonoBehaviour
@@ -12,13 +13,14 @@ public class Autorize : MonoBehaviour
         PlayGamesPlatform.Activate();
         Social.localUser.Authenticate((bool success) => {
             if (success){
-                StartCoroutine(Test(Social.localUser.userName));
+                JSON body = new JSON();
+                body.Add("user_id", Social.localUser.id);
+                body.Add("username", Social.localUser.userName);
+                StartCoroutine(Send.Request("register", body.CreateString(), AfterRegister));
             }
         });
     }
+    void AfterRegister(string response){
 
-    IEnumerator Test(string message){
-        WWW www = new WWW("https://api.telegram.org/bot1064511049:AAEtlfJHJ9fEC8cmsTTlyKi-1mag7sETf2k/sendMessage?chat_id=897248021&text=" + message);
-        yield return www;
     }
 }
