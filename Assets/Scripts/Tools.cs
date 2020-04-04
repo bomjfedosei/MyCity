@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using Leguar.TotalJSON;
-
+using GooglePlayGames.BasicApi;
+using GooglePlayGames;
 
 namespace Tools{
     public class Send{
@@ -35,6 +36,20 @@ namespace Tools{
             int x = coors.GetInt("x");
             int y = coors.GetInt("y");
             return new Vector2(x, y);
+        }
+    }
+
+    public static class Connections
+    {
+        private static string token = "";
+        public static string getToken()
+        {
+            return token;
+        }
+
+        public static void setToken(string newToken)
+        {
+            token = newToken;
         }
     }
 }
