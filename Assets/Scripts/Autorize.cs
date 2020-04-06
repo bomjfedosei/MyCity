@@ -10,40 +10,33 @@ using GooglePlayGames.BasicApi.SavedGame;
 
 public class Autorize : MonoBehaviour
 {
-    void Start(){
-        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
-            .RequestIdToken()
-            .EnableSavedGames()
-            .Build();
-        PlayGamesPlatform.InitializeInstance(config);
-        PlayGamesPlatform.DebugLogEnabled = true;
-        PlayGamesPlatform.Activate();
-
-        Social.localUser.Authenticate((bool success) =>
-        {
-            if (success)
-            {
-                ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
-                savedGameClient.OpenWithAutomaticConflictResolution("MyToken.sav", DataSource.ReadCacheOrNetwork,
-                    ConflictResolutionStrategy.UseLongestPlaytime, OnSavedGameOpened);
-            }
-            else
-            {
-
-            }
-        }
-        );
-    }
-
-    void OnSavedGameOpened(SavedGameRequestStatus status, ISavedGameMetadata game)
+    private void Start()
     {
-        if (status == SavedGameRequestStatus.Success)
+        GPGSManager.Initialize(false);
+        GPGSManager.Auth((success) =>
         {
-            Send.Request("check_connection?status=" + game.IsOpen, new JSON().CreateString(), Output);
-        }
+            if (success && !PlayerPrefs.HasKey("token"))
+            {
+                GPGSManager.ReadSaveData(GPGSManager.DEFAULT_SAVE_NAME, (status, data) =>
+                {
+                    if (status == SavedGameRequestStatus.Success && data.Length > 0)
+                    {
+                        
+                    }
+                    else
+                    {
+                        JSON registerData = new JSON();
+                        registerData.Add("user_id", GPGSManager.GetUserId());
+                        registerData.Add("username", GPGSManager.GetUsername());
+                        Send.Request("register_user", registerData.CreateString(), RegisterUser);
+                    }
+                    
+                });
+            }
+        });
     }
 
-    void Output(string ans)
+    void RegisterUser(string response)
     {
 
     }
