@@ -17,7 +17,7 @@ public class Autorize : MonoBehaviour
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
         PlayGamesPlatform.InitializeInstance(config);
         PlayGamesPlatform.Activate();
-        PlayGamesPlatform.Instance.Authenticate((success) => { 
+        Social.localUser.Authenticate((success) => { 
             if (success)
             {
                 JSON userParams = new JSON();
