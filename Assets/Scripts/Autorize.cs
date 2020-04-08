@@ -12,32 +12,23 @@ public class Autorize : MonoBehaviour
 {
     private void Start()
     {
-        GPGSManager.Initialize(false);
-        GPGSManager.Auth((success) =>
-        {
-            if (success && !PlayerPrefs.HasKey("token"))
+        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+        PlayGamesPlatform.InitializeInstance(config);
+        PlayGamesPlatform.Activate();
+        PlayGamesPlatform.Instance.Authenticate((success) => { 
+            if (success)
             {
-                GPGSManager.ReadSaveData(GPGSManager.DEFAULT_SAVE_NAME, (status, data) =>
-                {
-                    if (status == SavedGameRequestStatus.Success && data.Length > 0)
-                    {
-                        
-                    }
-                    else
-                    {
-                        JSON registerData = new JSON();
-                        registerData.Add("user_id", GPGSManager.GetUserId());
-                        registerData.Add("username", GPGSManager.GetUsername());
-                        Send.Request("register_user", registerData.CreateString(), RegisterUser);
-                    }
-                    
-                });
+                JSON userParams = new JSON();
+                userParams.Add("GP_ID", Social.localUser.id);
+                userParams.Add("username", Social.localUser.userName);
+                Send.Request("register_user", userParams.CreateString(), RegisterCallBack);
             }
         });
     }
 
-    void RegisterUser(string response)
+    void RegisterCallBack(string response)
     {
+        JSON responseJSON = JSON.ParseString(response);
 
     }
 }
