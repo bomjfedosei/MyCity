@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using Tools;
@@ -10,6 +11,7 @@ using GooglePlayGames.BasicApi.SavedGame;
 
 public class Autorize : MonoBehaviour
 {
+    public Text label;
     private void Start()
     {
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
@@ -29,6 +31,6 @@ public class Autorize : MonoBehaviour
     void RegisterCallBack(string response)
     {
         JSON responseJSON = JSON.ParseString(response);
-
+        label.text = Social.localUser.id;
     }
 }
