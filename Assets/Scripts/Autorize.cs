@@ -25,7 +25,7 @@ public class Autorize : MonoBehaviour
                 userParams.Add("GP_ID", Social.localUser.id);
                 userParams.Add("username", Social.localUser.userName);
                 label.text = userParams.CreateString();
-                Send.Request("register_user", userParams.CreateString(), RegisterCallBack);
+                StartCoroutine(Send.Request("register_user", userParams.CreateString(), RegisterCallBack));
             }
         });
     }
