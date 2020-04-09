@@ -20,9 +20,11 @@ public class Autorize : MonoBehaviour
         Social.localUser.Authenticate((success) => { 
             if (success)
             {
+                label.text = "SUCCESS";
                 JSON userParams = new JSON();
                 userParams.Add("GP_ID", Social.localUser.id);
                 userParams.Add("username", Social.localUser.userName);
+                label.text = userParams.CreateString();
                 Send.Request("register_user", userParams.CreateString(), RegisterCallBack);
             }
         });
