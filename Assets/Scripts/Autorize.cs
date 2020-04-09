@@ -32,7 +32,6 @@ public class Autorize : MonoBehaviour
 
     void RegisterCallBack(string response)
     {
-        JSON responseJSON = JSON.ParseString(response);
-        label.text = Social.localUser.id;
+        label.text = response;
     }
 }

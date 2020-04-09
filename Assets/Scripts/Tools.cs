@@ -22,6 +22,7 @@ namespace Tools{
             yield return uwr.SendWebRequest();
             if (uwr.error != null){
                 Debug.Log(uwr.error);
+                CallBack(uwr.error);
             }
             else{
                 Debug.Log(uwr.downloadHandler.text);
