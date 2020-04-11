@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using Tools;
@@ -33,6 +34,26 @@ public class Autorize : MonoBehaviour
     void RegisterCallBack(string response)
     {
         JSON responseJSON = JSON.ParseString(response);
-        label.text = response;
+        bool isNewUser = responseJSON.GetBool("is_new_user");
+        GetData();
+    }
+
+
+    void GetData()
+    {
+        PlayerPrefs.SetString("token", Social.localUser.id);
+        JSON userParams = new JSON();
+        userParams.Add("token", Social.localUser.id);
+        StartCoroutine(Send.Request("get_profile", userParams.CreateString(), GetDataCallback));
+    }
+
+    void GetDataCallback(string response)
+    {
+        JSON responseJSON = JSON.ParseString(response);
+        PlayerPrefs.SetString("username", responseJSON.GetString("username"));
+        PlayerPrefs.SetInt("spawn_x", responseJSON.GetJSON("spawn").GetInt("x"));
+        PlayerPrefs.SetInt("spawn_y", responseJSON.GetJSON("spawn").GetInt("y"));
+        SceneManager.UnloadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
