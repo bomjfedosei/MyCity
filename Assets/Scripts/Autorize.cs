@@ -53,7 +53,7 @@ public class Autorize : MonoBehaviour
         PlayerPrefs.SetString("username", responseJSON.GetString("username"));
         PlayerPrefs.SetInt("spawn_x", responseJSON.GetJSON("spawn").GetInt("x"));
         PlayerPrefs.SetInt("spawn_y", responseJSON.GetJSON("spawn").GetInt("y"));
-        SceneManager.UnloadScene(0);
         SceneManager.LoadScene(1);
+        SceneManager.UnloadSceneAsync(0);
     }
 }
