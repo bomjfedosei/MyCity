@@ -41,7 +41,7 @@ public class Autorize : MonoBehaviour
 
     void GetData()
     {
-        PlayerPrefs.SetString("token", Social.localUser.id);
+        PlayerPrefs.SetString("gp_id", Social.localUser.id);
         JSON userParams = new JSON();
         userParams.Add("token", Social.localUser.id);
         StartCoroutine(Send.Request("get_profile", userParams.CreateString(), GetDataCallback));
@@ -49,11 +49,12 @@ public class Autorize : MonoBehaviour
 
     void GetDataCallback(string response)
     {
-        JSON responseJSON = JSON.ParseString(response);
+        label.text = response;
+        /*JSON responseJSON = JSON.ParseString(response);
         PlayerPrefs.SetString("username", responseJSON.GetString("username"));
         PlayerPrefs.SetInt("spawn_x", responseJSON.GetJSON("spawn").GetInt("x"));
         PlayerPrefs.SetInt("spawn_y", responseJSON.GetJSON("spawn").GetInt("y"));
         SceneManager.LoadScene(1);
-        SceneManager.UnloadSceneAsync(0);
+        SceneManager.UnloadSceneAsync(0);*/ 
     }
 }
