@@ -21,11 +21,9 @@ public class Autorize : MonoBehaviour
         Social.localUser.Authenticate((success) => { 
             if (success)
             {
-                label.text = "SUCCESS";
                 JSON userParams = new JSON();
                 userParams.Add("GP_ID", Social.localUser.id);
                 userParams.Add("username", Social.localUser.userName);
-                label.text = userParams.CreateString();
                 StartCoroutine(Send.Request("register_user", userParams.CreateString(), RegisterCallBack));
             }
         });
@@ -43,7 +41,7 @@ public class Autorize : MonoBehaviour
     {
         PlayerPrefs.SetString("gp_id", Social.localUser.id);
         JSON userParams = new JSON();
-        userParams.Add("GP_ID", Social.localUser.id);
+        userParams.Add("token", Social.localUser.id);
         StartCoroutine(Send.Request("get_profile", userParams.CreateString(), GetDataCallback));
     }
 
