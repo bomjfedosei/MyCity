@@ -43,7 +43,7 @@ public class Autorize : MonoBehaviour
     {
         PlayerPrefs.SetString("gp_id", Social.localUser.id);
         JSON userParams = new JSON();
-        userParams.Add("token", Social.localUser.id);
+        userParams.Add("GP_ID", Social.localUser.id);
         StartCoroutine(Send.Request("get_profile", userParams.CreateString(), GetDataCallback));
     }
 
