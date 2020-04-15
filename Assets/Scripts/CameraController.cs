@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         setCoorsText();
+        GoStartPos();
     }
 
     private void Update()
@@ -44,5 +45,13 @@ public class CameraController : MonoBehaviour
         string posX = ((int)transform.position.x).ToString();
         string posY = ((int)transform.position.y).ToString();
         coorsInfo.text = "X: " + posX + " Y: " + posY;
+    }
+
+    private void GoStartPos()
+    {
+        transform.position = new Vector3(
+            (float)PlayerPrefs.GetInt("spawn_x"), 
+            (float)PlayerPrefs.GetInt("spawn_y"), 
+            transform.position.z);
     }
 }
