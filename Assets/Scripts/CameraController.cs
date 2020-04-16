@@ -52,6 +52,6 @@ public class CameraController : MonoBehaviour
         transform.position = new Vector3(
             (float)PlayerPrefs.GetInt("spawn_x"), 
             (float)PlayerPrefs.GetInt("spawn_y"), 
-            transform.position.z);
+            -10);
     }
 }

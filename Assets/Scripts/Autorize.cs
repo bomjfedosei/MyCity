@@ -18,13 +18,17 @@ public class Autorize : MonoBehaviour
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
         PlayGamesPlatform.InitializeInstance(config);
         PlayGamesPlatform.Activate();
-        Social.localUser.Authenticate((success) => { 
+        Social.localUser.Authenticate((success, message) => { 
             if (success)
             {
                 JSON userParams = new JSON();
                 userParams.Add("GP_ID", Social.localUser.id);
                 userParams.Add("username", Social.localUser.userName);
                 StartCoroutine(Send.Request("register_user", userParams.CreateString(), RegisterCallBack));
+            }
+            else
+            {
+                label.text = message;
             }
         });
     }
