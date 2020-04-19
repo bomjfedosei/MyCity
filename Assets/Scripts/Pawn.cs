@@ -8,15 +8,30 @@ using Leguar.TotalJSON;
 public class Pawn : MonoBehaviour
 {
     void OnMouseDown(){
-        string key = GetComponent<Element>().getKey();
-        JSON body = new JSON();
-        body.Add("object_uuid", key);
-        body.Add("token", "b682277a53e4a6875ac34863ddbd8b1224430da7a74d665086c9433f921f9b9d");
-        //StartCoroutine(Send.Request("get_map", body.CreateString(), ActionsView));
+        
     }
 
     void ActionsView(string response){
         Debug.Log(response);
     }
     
+    public void DrawAction(JSON action)
+    {
+        if (action.ContainsKey("way"))
+        {
+            DrawPath(action.GetJArray("way"));
+        }
+    }
+
+    void DrawPath(JArray way)
+    {
+        GetComponent<LineRenderer>().positionCount = way.Length;
+        Vector3[] points = new Vector3[way.Length];
+        for (int i = 0; i < way.Length; i++)
+        {
+            JArray pointJArray = way.GetJArray(i);
+            points[i] = new Vector3(pointJArray.GetInt(0), pointJArray.GetInt(1), 0);
+        }
+        GetComponent<LineRenderer>().SetPositions(points);
+    }
 }

@@ -50,8 +50,8 @@ public class CameraController : MonoBehaviour
     private void GoStartPos()
     {
         transform.position = new Vector3(
-            (float)PlayerPrefs.GetInt("spawn_x"), 
-            (float)PlayerPrefs.GetInt("spawn_y"), 
+            PlayerPrefs.GetInt("spawn_x"), 
+            PlayerPrefs.GetInt("spawn_y"), 
             -10);
     }
 }

@@ -131,7 +131,7 @@ public class Map : MonoBehaviour
     private void Start()
     {
         SetParams();
-        GenMap(0, 0);
+        GenMap((int)transform.position.x, (int)transform.position.y);
     }
 
 }

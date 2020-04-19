@@ -12,6 +12,7 @@ namespace Tools{
         public static Dictionary<string, UnityWebRequest> items = new Dictionary<string, UnityWebRequest>();
         private static string rootUrl = "https://bomjfedosei.fvds.ru/async/";
         public static IEnumerator Request(string method, string json, Action<string> CallBack){
+            Debug.Log("SENDED : " + json);
             string url = rootUrl + method;
             var uwr = new UnityWebRequest(url, "POST");
             items.Add(method, uwr);
@@ -24,7 +25,7 @@ namespace Tools{
                 Debug.Log(uwr.error);
             }
             else{
-                Debug.Log(uwr.downloadHandler.text);
+                Debug.Log("RECEIVED :" + uwr.downloadHandler.text);
                 CallBack(uwr.downloadHandler.text);
             }
         }
