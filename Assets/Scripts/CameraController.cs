@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         setCoorsText();
-        GoStartPos();
+        //GoStartPos();
     }
 
     private void Update()
@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
             if (x < borderXUp || x > borderXDown ||
                 y < borderYUp || y > borderYDown) 
             {
-                GetComponent<Map>().GenMap(x, y);
+                GetComponent<Map>().GenMap(x, y); 
             }
         }
         if (previosPos != (Vector2)transform.position)

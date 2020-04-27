@@ -3,35 +3,119 @@ using System.Collections.Generic;
 using UnityEngine;
 using Tools;
 using Leguar.TotalJSON;
-
+using System;
+using System.Linq;
 
 public class Pawn : MonoBehaviour
 {
-    void OnMouseDown(){
-        
+
+    double Speed;
+    string Action = null;
+    TimeSpan EstimatedTime;
+    int StartTime, EndTime;
+    Vector3[] Way;
+
+
+    private void FixedUpdate()
+    {
+        if (Action != null && isMove()){
+            int epoch = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
+            if (EndTime > epoch)
+            {
+                GetCurrentPos();
+            }
+            else
+            {
+                DropAction();
+            }
+        }
     }
 
-    void ActionsView(string response){
-        Debug.Log(response);
-    }
     
     public void DrawAction(JSON action)
     {
         if (action.ContainsKey("way"))
         {
-            DrawPath(action.GetJArray("way"));
+            Way = GetWay(action.GetJArray("way"));
+            Action = action.GetString("action_name");
+            StartTime = action.GetInt("start_time");
+            EndTime = action.GetInt("end_time");
+            float[] wayDistanceCuts = CountDistanceCuts(Way);
+            EstimatedTime = TimeSpan.FromSeconds(EndTime - StartTime);
+            Speed = (double)wayDistanceCuts.Sum() / EstimatedTime.TotalSeconds;
+            GetComponent<LineRenderer>().positionCount = Way.Length;
+            GetComponent<LineRenderer>().SetPositions(Way);
         }
     }
 
-    void DrawPath(JArray way)
+    public void DropAction()
     {
-        GetComponent<LineRenderer>().positionCount = way.Length;
+        Action = null;
+    }
+
+    Vector3 GetCurrentPos()
+    {
+        int epoch = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
+        float[] wayDistanceCuts = CountDistanceCuts(Way);
+        double covDistance = Speed * (epoch - StartTime);
+        if (isForward())
+        {
+            for (int i = 0; i < wayDistanceCuts.Length; i++)
+            {
+                float cut = wayDistanceCuts[i];
+                if (covDistance > cut)
+                {
+                    covDistance -= cut;
+                }
+                else
+                {
+                    
+                }
+            }
+        }
+        else
+        {
+
+        }
+        return new Vector3();
+    }
+
+    Vector3[] GetWay(JArray way)
+    {
         Vector3[] points = new Vector3[way.Length];
         for (int i = 0; i < way.Length; i++)
         {
             JArray pointJArray = way.GetJArray(i);
             points[i] = new Vector3(pointJArray.GetInt(0), pointJArray.GetInt(1), 0);
         }
-        GetComponent<LineRenderer>().SetPositions(points);
+        return points;
     }
+
+    float[] CountDistanceCuts(Vector3[] way)
+    {
+        float[] distanceCuts = new float[way.Length - 1];
+        for (int i = 0; i < distanceCuts.Length; i++)
+        {
+            float tempDistance = Vector2.Distance(way[i], way[i + 1]);
+            distanceCuts[i] = tempDistance;
+        }
+        return distanceCuts;
+    }
+
+    bool isMove()
+    { 
+        string[] move = { "walk", "carry" };
+        return move.Contains(Action);
+    }
+
+    bool isForward()
+    {
+        if (isMove())
+        {
+            string[] forward = { "walk"};
+            return forward.Contains(Action);
+        }
+        return false;
+    }
+
 }

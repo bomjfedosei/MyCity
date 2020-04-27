@@ -20,6 +20,10 @@ public class Element : MonoBehaviour
             {
                 GetComponent<Pawn>().DrawAction(elementData.GetJSON("action"));
             }
+            else
+            {
+                GetComponent<Pawn>().DropAction();
+            }
         }
     }
 
