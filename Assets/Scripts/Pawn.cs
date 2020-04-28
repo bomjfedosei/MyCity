@@ -16,13 +16,13 @@ public class Pawn : MonoBehaviour
     Vector3[] Way;
 
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (Action != null && isMove()){
             int epoch = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
             if (EndTime > epoch)
             {
-                GetCurrentPos();
+                transform.position = GetCurrentPos() + new Vector3(0f, GetComponent<Element>().marginY, 0f);
             }
             else
             {
@@ -69,13 +69,10 @@ public class Pawn : MonoBehaviour
                 }
                 else
                 {
-                    
+                    Vector3 result = Way[i] + (Way[i + 1] - Way[i]) * (float)(covDistance / wayDistanceCuts[i]);
+                    return result;
                 }
             }
-        }
-        else
-        {
-
         }
         return new Vector3();
     }
