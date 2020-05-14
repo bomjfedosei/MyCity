@@ -22,7 +22,7 @@ public class Pawn : MonoBehaviour
             int epoch = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
             if (EndTime > epoch)
             {
-                transform.position = GetCurrentPos() + new Vector3(0f, GetComponent<Element>().marginY, 0f);
+                //transform.position = GetCurrentPos() + new Vector3(0f, GetComponent<Element>().marginY, 0f);
             }
             else
             {
@@ -53,7 +53,7 @@ public class Pawn : MonoBehaviour
         Action = null;
     }
 
-    Vector3 GetCurrentPos()
+    /*Vector3 GetCurrentPos()
     {
         int epoch = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
         float[] wayDistanceCuts = CountDistanceCuts(Way);
@@ -75,7 +75,7 @@ public class Pawn : MonoBehaviour
             }
         }
         return new Vector3();
-    }
+    }*/
 
     Vector3[] GetWay(JArray way)
     {

@@ -113,6 +113,12 @@ public class Map : MonoBehaviour
                     Objects.Add(uuid, createdObject);
                     createdObject.GetComponent<Element>().setJSON(element);
                 }
+                else
+                {
+                    GameObject Value = new GameObject();
+                    Objects.TryGetValue(uuid, out Value);
+                    Value.GetComponent<Element>().setJSON(element);
+                }
                 createdObjectsKeys.Add(uuid);
             }
         }
