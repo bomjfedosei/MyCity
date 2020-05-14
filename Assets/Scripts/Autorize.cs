@@ -8,13 +8,13 @@ using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using Tools;
 using Leguar.TotalJSON;
-using GooglePlayGames.BasicApi.SavedGame;
 
 public class Autorize : MonoBehaviour
 {
     public Text label;
     private void Start()
     {
+        label.text = "Started" + DateTime.Now;
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
         PlayGamesPlatform.InitializeInstance(config);
         PlayGamesPlatform.Activate();
@@ -25,6 +25,7 @@ public class Autorize : MonoBehaviour
                 userParams.Add("GP_ID", Social.localUser.id);
                 userParams.Add("username", Social.localUser.userName);
                 StartCoroutine(Send.Request("register_user", userParams.CreateString(), RegisterCallBack));
+                label.text = "DEBUG";
             }
             else
             {
