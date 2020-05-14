@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -29,7 +27,7 @@ public class Autorize : MonoBehaviour
             }
             else
             {
-                label.text = message;
+                label.text = message + " " + Social.localUser.userName;
             }
         });
     }
