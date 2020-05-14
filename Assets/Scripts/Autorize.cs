@@ -27,8 +27,9 @@ public class Autorize : MonoBehaviour
             }
             else
             {
-                label.text = message + " " + Social.localUser.userName;
+                label.text = "OK";
             }
+            label.text = success.ToString();
         });
     }
 
