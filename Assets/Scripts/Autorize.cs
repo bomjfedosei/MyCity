@@ -23,13 +23,13 @@ public class Autorize : MonoBehaviour
                 userParams.Add("GP_ID", Social.localUser.id);
                 userParams.Add("username", Social.localUser.userName);
                 StartCoroutine(Send.Request("register_user", userParams.CreateString(), RegisterCallBack));
-                label.text = "DEBUG";
+                label.text = "DEBUG"; 
             }
             else
             {
                 label.text = "OK";
             }
-            label.text = success.ToString();
+            label.text = message;
         });
     }
 
