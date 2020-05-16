@@ -54,8 +54,8 @@ public class Autorize : MonoBehaviour
         label.text = response;
         JSON responseJSON = JSON.ParseString(response);
         PlayerPrefs.SetString("username", responseJSON.GetString("username"));
-        PlayerPrefs.SetInt("spawn_x", responseJSON.GetJSON("spawn").GetInt("x"));
-        PlayerPrefs.SetInt("spawn_y", responseJSON.GetJSON("spawn").GetInt("y"));
+        PlayerPrefs.SetInt("spawn_x", (int)responseJSON.GetJSON("spawn").GetFloat("x"));
+        PlayerPrefs.SetInt("spawn_y", (int)responseJSON.GetJSON("spawn").GetFloat("y"));
         SceneManager.LoadScene(1);
         SceneManager.UnloadSceneAsync(0); 
     }
