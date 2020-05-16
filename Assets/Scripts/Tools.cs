@@ -34,8 +34,8 @@ namespace Tools{
     {
         public static Vector2 createCoorsfromJSON(JSON coors)
         {
-            int x = coors.GetInt("x");
-            int y = coors.GetInt("y");
+            float x = coors.GetFloat("x");
+            float y = coors.GetFloat("y");
             return new Vector2(x, y);
         }
     }

@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         setCoorsText();
-        //GoStartPos();
+        GoStartPos();
     }
 
     private void Update()

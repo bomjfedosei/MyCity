@@ -83,7 +83,7 @@ public class Pawn : MonoBehaviour
         for (int i = 0; i < way.Length; i++)
         {
             JArray pointJArray = way.GetJArray(i);
-            points[i] = new Vector3(pointJArray.GetInt(0), pointJArray.GetInt(1), 0);
+            points[i] = new Vector3(pointJArray.GetFloat(0), pointJArray.GetFloat(1), 0);
         }
         return points;
     }
