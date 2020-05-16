@@ -36,6 +36,7 @@ public class Autorize : MonoBehaviour
     void RegisterCallBack(string response)
     {
         JSON responseJSON = JSON.ParseString(response);
+        label.text = response;
         bool isNewUser = responseJSON.GetBool("is_new_user");
         GetData();
     }
