@@ -140,4 +140,5 @@ public class Map : MonoBehaviour
         GenMap((int)transform.position.x, (int)transform.position.y);
     }
 
+
 }

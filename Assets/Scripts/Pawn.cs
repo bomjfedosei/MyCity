@@ -14,24 +14,42 @@ public class Pawn : MonoBehaviour
     TimeSpan EstimatedTime;
     int StartTime, EndTime;
     Vector3[] Way;
+    float[] WayDistanceCuts;
+    int Orientation; // 0 - Right | 1 - Left | 2 - Up | 3 - Down
+    Animator Anim;
+    bool isGettingNextAction;
+
+    private void Start()
+    {
+        isGettingNextAction = false;
+        Anim = GetComponentInChildren<Animator>();
+    }
 
 
     private void Update()
     {
-        if (Action != null && isMove()){
+        if (Action != null){
             int epoch = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
             if (EndTime > epoch)
             {
-                //transform.position = GetCurrentPos() + new Vector3(0f, GetComponent<Element>().marginY, 0f);
+                if (isMove())
+                {
+                    transform.position = GetCurrentPos() + new Vector3(0f, GetComponent<Element>().marginY, 0f);
+                }
+                else
+                {
+                    LineRenderer lineRenderer = GetComponent<LineRenderer>();
+                    transform.position = lineRenderer.GetPosition(lineRenderer.positionCount - 1) + new Vector3(0f, GetComponent<Element>().marginY, 0f);
+                }
             }
             else
             {
-                DropAction();
+                GetNextAction();
             }
         }
-    }
+        SetAnimation();
+    } 
 
-    
     public void DrawAction(JSON action)
     {
         if (action.ContainsKey("way"))
@@ -40,42 +58,95 @@ public class Pawn : MonoBehaviour
             Action = action.GetString("action_name");
             StartTime = action.GetInt("start_time");
             EndTime = action.GetInt("end_time");
-            float[] wayDistanceCuts = CountDistanceCuts(Way);
+            WayDistanceCuts = CountDistanceCuts(Way);
             EstimatedTime = TimeSpan.FromSeconds(EndTime - StartTime);
-            Speed = (double)wayDistanceCuts.Sum() / EstimatedTime.TotalSeconds;
+            Speed = (double)WayDistanceCuts.Sum() / EstimatedTime.TotalMilliseconds;
             GetComponent<LineRenderer>().positionCount = Way.Length;
             GetComponent<LineRenderer>().SetPositions(Way);
+            if (!isForward())
+            {
+                Array.Reverse(WayDistanceCuts);
+                Array.Reverse(Way);
+            }
+            if (!isMove())
+            {
+                GameObject target = GameObject.Find(action.GetString("target_uuid"));
+                if (target != null)
+                {
+                    float marginY = target.GetComponent<Element>().marginY;
+                    Vector3 targetCoors = target.transform.position - new Vector3(0f, marginY, 0f);
+                    Orientation = GetOrientation(targetCoors - Way[Way.Length - 1]);
+                }
+                
+                //Orientation = GetOrientation(Way[Way.Length] - );
+            }
         }
+    }
+
+    private void GetNextAction()
+    {
+        if (isGettingNextAction == false)
+        {
+            isGettingNextAction = true;
+            JSON parameters = new JSON();
+            //parameters.Add("GP_ID", "g05987395182658537218");
+            parameters.Add("GP_ID", PlayerPrefs.GetString("gp_id"));
+            parameters.Add("object_uuid", GetComponent<Element>().getKey());
+            StartCoroutine(Send.Request("get_current_action", parameters.CreateString(), NextAction));
+        }
+    }
+
+    void NextAction(string responseJSON)
+    {
+        JSON response = JSON.ParseString(responseJSON);
+        if (response.GetBool("status"))
+        {
+            if (!response.IsJNull("action"))
+            {
+                DrawAction(response.GetJSON("action"));
+            }
+        }
+        isGettingNextAction = false;
+    }
+
+    private void SetAnimation()
+    {
+        Anim.SetBool("isWalk", isMove());
+        Anim.SetInteger("Orientation", Orientation);
+        Anim.SetBool("isCarry", isCarry());
+        Anim.SetBool("isCut", isCut());
+
     }
 
     public void DropAction()
     {
         Action = null;
+        //Anim.SetTrigger("isIdle");
     }
 
-    /*Vector3 GetCurrentPos()
+    Vector3 GetCurrentPos()
     {
-        int epoch = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
-        float[] wayDistanceCuts = CountDistanceCuts(Way);
-        double covDistance = Speed * (epoch - StartTime);
-        if (isForward())
+        long epoch = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+        Vector3[] localWay = Way;
+        TimeSpan StartTimeTS = TimeSpan.FromSeconds(StartTime);
+        double StartTimeMS = StartTimeTS.TotalMilliseconds;
+        double covDistance = Speed * (epoch - StartTimeMS);
+        for (int i = 0; i < WayDistanceCuts.Length; i++)
         {
-            for (int i = 0; i < wayDistanceCuts.Length; i++)
+            float cut = WayDistanceCuts[i];
+            if (covDistance > cut)
             {
-                float cut = wayDistanceCuts[i];
-                if (covDistance > cut)
-                {
-                    covDistance -= cut;
-                }
-                else
-                {
-                    Vector3 result = Way[i] + (Way[i + 1] - Way[i]) * (float)(covDistance / wayDistanceCuts[i]);
-                    return result;
-                }
+                covDistance -= cut;
+            }
+            else
+            {
+                Orientation = GetOrientation(localWay[i + 1] - localWay[i]);
+                Vector3 result = localWay[i] + (localWay[i + 1] - localWay[i]) * (float)(covDistance / WayDistanceCuts[i]);
+                return result;
             }
         }
         return new Vector3();
-    }*/
+    }
 
     Vector3[] GetWay(JArray way)
     {
@@ -99,6 +170,27 @@ public class Pawn : MonoBehaviour
         return distanceCuts;
     }
 
+    int GetOrientation(Vector3 Inc)
+    {
+        if (Inc.x > 0f)
+        {
+            return 0;
+        }
+        else if (Inc.x < 0f)
+        {
+            return 1;
+        }
+        else if (Inc.y > 0f)
+        {
+            return 2;
+        }
+        else if (Inc.y < 0f)
+        {
+            return 3;
+        }
+        return 0;
+    }
+
     bool isMove()
     { 
         string[] move = { "walk", "carry" };
@@ -113,6 +205,18 @@ public class Pawn : MonoBehaviour
             return forward.Contains(Action);
         }
         return false;
+    }
+
+    bool isCarry()
+    {
+        string[] carry = { "carry" };
+        return carry.Contains(Action);
+    }
+
+    bool isCut()
+    {
+        string[] cut = { "cut" };
+        return cut.Contains(Action);
     }
 
 }

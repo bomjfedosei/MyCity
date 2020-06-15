@@ -1,0 +1,404 @@
+fileFormatVersion: 2
+guid: 264c1d9300484ec449814188fbd9d9ff
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Woodcutter_Go_Log_Up_0
+    21300002: Woodcutter_Go_Log_Up_1
+    21300004: Woodcutter_Go_Log_Up_2
+    21300006: Woodcutter_Go_Log_Up_3
+    21300008: Woodcutter_Go_Log_Up_4
+    21300010: Woodcutter_Go_Log_Up_5
+    21300012: Woodcutter_Go_Log_Up_6
+    21300014: Woodcutter_Go_Log_Up_7
+    21300016: Woodcutter_Go_Log_Up_8
+    21300018: Woodcutter_Go_Log_Up_9
+    21300020: Woodcutter_Go_Log_Up_10
+    21300022: Woodcutter_Go_Log_Up_11
+    21300024: Woodcutter_Go_Log_Up_12
+    21300026: Woodcutter_Go_Log_Up_13
+  externalObjects: {}
+  serializedVersion: 9
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1024
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2157.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a21fa111b1cdb404e937fdf62e7c4ede
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_1
+      rect:
+        serializedVersion: 2
+        x: 2134
+        y: 2157.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 568fe881a95df034b8d6809534f56fa7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_2
+      rect:
+        serializedVersion: 2
+        x: 4268
+        y: 2157.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78ba41bef69243f498a6f913ab87b850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_3
+      rect:
+        serializedVersion: 2
+        x: 6402
+        y: 2157.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7fafa624a43fda4cb1f869ac14ec89c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_4
+      rect:
+        serializedVersion: 2
+        x: 8536
+        y: 2157.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85123212a5e82974b830e9802d78da8b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_5
+      rect:
+        serializedVersion: 2
+        x: 10670
+        y: 2157.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b968ccc936f8f694bb9a15ecef178ade
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_6
+      rect:
+        serializedVersion: 2
+        x: 12804
+        y: 2157.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2347e8bc1ba558e43b5130f6011e087b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7671369f980da7b41a9cc34d99cf6732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_8
+      rect:
+        serializedVersion: 2
+        x: 2134
+        y: 0.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 792ff6ddc2da49e439af98aae3c0ee36
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_9
+      rect:
+        serializedVersion: 2
+        x: 4268
+        y: 0.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d31b6d62546bac4d973cf63157f1e13
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_10
+      rect:
+        serializedVersion: 2
+        x: 6402
+        y: 0.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4143814b20fdf234e9ad10b52a276306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_11
+      rect:
+        serializedVersion: 2
+        x: 8536
+        y: 0.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 174783cf1452ea24e9567e06cadee48e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_12
+      rect:
+        serializedVersion: 2
+        x: 10670
+        y: 0.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0123eaca0a4b00648949611cf8671b7c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Woodcutter_Go_Log_Up_13
+      rect:
+        serializedVersion: 2
+        x: 12804
+        y: 0.5
+        width: 2134.1428
+        height: 2157.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ecc9b0a4339f3847a28e75122a91347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: b8219e9c6fbf0ef4b9420fdc6741eccb
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

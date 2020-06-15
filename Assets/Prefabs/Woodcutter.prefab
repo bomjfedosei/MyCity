@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 120155630349232468}
   - component: {fileID: 114037905665046398}
   - component: {fileID: 114846783664576762}
+  - component: {fileID: 95390494567813642}
   m_Layer: 0
   m_Name: Woodcutter
   m_TagString: Woodcutter
@@ -353,3 +354,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb4a2ffde2f00141bd817e839867b14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &95390494567813642
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7176972407733671914}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 611187311b371644384517b373fa5371, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
