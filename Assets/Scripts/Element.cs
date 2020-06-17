@@ -15,6 +15,7 @@ public class Element : MonoBehaviour
     public void setJSON(JSON elementData){
         this.key = elementData.GetString("uuid");
         name = key;
+        type = elementData.GetString("name");
         if (elementData.GetString("type") == "pawn")
         {
             if (elementData.ContainsKey("action"))

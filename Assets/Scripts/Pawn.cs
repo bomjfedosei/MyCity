@@ -25,6 +25,14 @@ public class Pawn : MonoBehaviour
         Anim = GetComponentInChildren<Animator>();
     }
 
+    private void OnMouseDown()
+    {
+        GameObject Camera = GameObject.Find("Camera");
+        Camera.GetComponent<CameraController>().SetLead(gameObject);
+        Camera.GetComponent<TaskManager>().Show(
+            GetComponent<Element>().getKey(),
+            GetComponent<Element>().type);
+    }
 
     private void Update()
     {
@@ -75,22 +83,21 @@ public class Pawn : MonoBehaviour
                 {
                     float marginY = target.GetComponent<Element>().marginY;
                     Vector3 targetCoors = target.transform.position - new Vector3(0f, marginY, 0f);
+                    Debug.Log(targetCoors);
                     Orientation = GetOrientation(targetCoors - Way[Way.Length - 1]);
                 }
-                
-                //Orientation = GetOrientation(Way[Way.Length] - );
             }
         }
     }
 
-    private void GetNextAction()
+    public void GetNextAction()
     {
         if (isGettingNextAction == false)
         {
             isGettingNextAction = true;
             JSON parameters = new JSON();
-            //parameters.Add("GP_ID", "g05987395182658537218");
-            parameters.Add("GP_ID", PlayerPrefs.GetString("gp_id"));
+            parameters.Add("GP_ID", "g05987395182658537218");
+            //parameters.Add("GP_ID", PlayerPrefs.GetString("gp_id"));
             parameters.Add("object_uuid", GetComponent<Element>().getKey());
             StartCoroutine(Send.Request("get_current_action", parameters.CreateString(), NextAction));
         }
@@ -104,6 +111,10 @@ public class Pawn : MonoBehaviour
             if (!response.IsJNull("action"))
             {
                 DrawAction(response.GetJSON("action"));
+            }
+            else
+            {
+                Action = null;
             }
         }
         isGettingNextAction = false;
