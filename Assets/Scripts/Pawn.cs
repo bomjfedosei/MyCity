@@ -96,8 +96,8 @@ public class Pawn : MonoBehaviour
         {
             isGettingNextAction = true;
             JSON parameters = new JSON();
-            parameters.Add("GP_ID", "g05987395182658537218");
-            //parameters.Add("GP_ID", PlayerPrefs.GetString("gp_id"));
+            //parameters.Add("GP_ID", "g05987395182658537218");
+            parameters.Add("GP_ID", PlayerPrefs.GetString("gp_id"));
             parameters.Add("object_uuid", GetComponent<Element>().getKey());
             StartCoroutine(Send.Request("get_current_action", parameters.CreateString(), NextAction));
         }

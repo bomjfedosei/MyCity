@@ -24,7 +24,8 @@ public class TaskManager : MonoBehaviour
         Type = type;
         UUID = uuid;
         JSON parameters = new JSON();
-        parameters.Add("GP_ID", "g05987395182658537218");
+        //parameters.Add("GP_ID", "g05987395182658537218");
+        parameters.Add("GP_ID", PlayerPrefs.GetString("gp_id"));
         parameters.Add("pawn_uuid", uuid);
         StartCoroutine(Send.Request("get_pawn_tasks_list", parameters.CreateString(), ShowTasks));
     }
@@ -79,7 +80,8 @@ public class TaskManager : MonoBehaviour
             SetTask.SetActive(true);
         }
         JSON parameters = new JSON();
-        parameters.Add("GP_ID", "g05987395182658537218");
+        //parameters.Add("GP_ID", "g05987395182658537218");
+        parameters.Add("GP_ID", PlayerPrefs.GetString("gp_id"));
         parameters.Add("task_name", "cut");
         parameters.Add("object_uuid", UUID);
         StartCoroutine(Send.Request("add_task_to_pawn", parameters.CreateString(), TaskToPawn));
@@ -118,7 +120,8 @@ public class TaskManager : MonoBehaviour
         camera.GetComponent<CameraController>().SetUnLead();
         JSON parameters = new JSON();
         parameters.Add("accept", answer);
-        parameters.Add("GP_ID", "g05987395182658537218");
+        //parameters.Add("GP_ID", "g05987395182658537218");
+        parameters.Add("GP_ID", PlayerPrefs.GetString("gp_id"));
         parameters.Add("task_uuid", TaskUUID);
         StartCoroutine(Send.Request("accept_task", parameters.CreateString(), AcceptTaskResponse));
     }
